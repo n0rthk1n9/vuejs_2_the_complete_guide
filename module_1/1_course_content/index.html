@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>VueJS</title>
+    <script type="text/javascript" src="https://unpkg.com/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <h1 v-once>{{ title }}</h1>
+      <p>{{ sayHello() }} - <a v-bind:href="link">Google</a></p>
+      <hr>
+      <p v-html="finishedLink"></p>
+      <hr>
+      <button v-on:click="increaseNumber(2)">Click me</button>
+      <button v-on:click="counter++">Click me</button>
+      <p>{{ counter * 2 > 10 ? 'Greater than 10' : 'Smaller than 10' }}</p>
+      <p v-on:mousemove="updateCoordinates">
+        Coordinates: {{ x }} / {{ y }}
+        - <span v-on:mousemove.stop="">DEAD SPOT</span>
+      </p>
+      <input type="text" v-on:keyup.enter="alertMe">
+      <hr>
+      <input type="text" v-model="name">
+      <p>{{ name }}</p>
+      <hr>
+      <button v-on:click="counter++">Increase</button>
+      <button v-on:click="counter--">Decrease</button>
+      <button v-on:click="secondCounter++">Increase Second</button>
+      <p>Counter: {{ counter }} | {{ secondCounter }}</p>
+      <p>Result: {{ resultOne() }} | {{ resultTwo }}</p>
+      <hr>
+      <button @click="changeLink">Click to change link</button>
+      <a :href="link"></a>
+    </div>
+
+    <script type="text/javascript">
+      new Vue({
+        el: '#app',
+        data: {
+          title: 'Hello World!',
+          link: 'https://google.de',
+          finishedLink: '<a href="https://google.de">Google</a>',
+          counter: 0,
+          secondCounter: 0,
+          x: 0,
+          y: 0,
+          name: 'Jan',
+          result: ''
+        },
+        methods: {
+          sayHello: function () {
+            this.title = 'Hello!';
+            return this.title;
+          },
+          increaseNumber: function (step) {
+            this.counter += step;
+          },
+          updateCoordinates: function (event) {
+            this.x = event.clientX;
+            this.y = event.clientY;
+          },
+          alertMe: function () {
+            alert('Pressed Enter');
+          },
+          resultOne: function () {
+            console.log('resultOne method run');
+            return this.counter > 5 ? 'Greater than 5' : 'Smaller than 5';
+          },
+          changeLink: function () {
+            this.link = 'https://apple.com';
+          }
+        },
+        computed: {
+          resultTwo: function () {
+            console.log('resultTwo computed run');
+            return this.counter > 5 ? 'Greater than 5' : 'Smaller than 5';
+          }
+        },
+        watch: {
+          counter: function (value) {
+            var _this = this;
+            setTimeout(function () {
+              _this.counter = 0;
+            }, 2000);
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

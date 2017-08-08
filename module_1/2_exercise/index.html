@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>VueJS Course - Exercise 1</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="exercise">
+      <!-- 1) Fill the <p> below with your Name and Age - using Interpolation -->
+      <p>VueJS is pretty cool - {{ name }} ({{ age }})</p>
+      <!-- 2) Output your age, multiplied by 3 -->
+      <p>My age multiplied with 3 is: {{ ageMultiplier() }}</p>
+      <!-- 3) Call a function to output a random float between 0 and 1 (Math.random()) -->
+      <p>Random float between 0 and 1: {{ getRandomFloat() }}</p>
+      <!-- 4) Search any image on Google and output it here by binding the "src" attribute -->
+      <div>
+          <img style="width:100px;height:100px" v-bind:src="imageLink">
+      </div>
+      <!-- 5) Pre-Populate this input with your name (set the "value" attribute) -->
+      <div>
+          <input type="text" v-bind:value="name">
+      </div>
+    </div>
+    <script type="text/javascript">
+      new Vue({
+        el: '#exercise',
+        data: {
+          name: 'Jan',
+          age: 21,
+          imageLink: 'https://www.theforkmanager.com/wp-content/uploads/2016/05/thefork-Foodporn-free-marketing-for-your-restaurant.png'
+        },
+        methods: {
+          ageMultiplier: function () {
+            return this.age * 3;
+          },
+          getRandomFloat: function () {
+            return Math.random();
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

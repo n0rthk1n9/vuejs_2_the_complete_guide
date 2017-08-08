@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>VueJS</title>
+  <script type="text/javascript" src="https://unpkg.com/vue/dist/vue.js"></script>
+  <link rel="stylesheet" href="app.css">
+</head>
+
+<body>
+
+  <div id="appOne">
+    <h1>{{ title }}</h1>
+    <button @click="show" ref="myButton">Show Paragraph</button>
+    <p v-if="showParagraph">This is not always visible</p>
+  </div>
+  <hr>
+  <div>
+    <button onclick="changeVmOneWithVanillaJS()">Change title of first VueJS Instance with Vanilla JS</button>
+  </div>
+  <hr>
+  <div id="appTwo">
+    <h1>{{ title }}</h1>
+    <button @click="changeVmOnewithVmTwo">Change something in first VueJS Instance</button>
+    <hello></hello>
+    <hello></hello>
+  </div>
+  <div id="appThree"></div>
+  <hello></hello>
+  <hello></hello>
+  <hr>
+  <div id="appFour">
+    <h1>{{ title }}</h1>
+    <button @click="title = 'Changed'">Update Title</button>
+    <button @click="destroy">Destroy</button>
+  </div>
+  <script type="text/javascript" src="app.js"></script>
+
+</body>
+
+</html>
